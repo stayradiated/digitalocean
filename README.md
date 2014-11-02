@@ -255,6 +255,52 @@ Configure permissions
         - remove test database
         - reload privileges table
 
+## PhpMyAdmin
+
+Install phpmyadmin
+
+    sudo apt-get install phpmyadmin
+
+- select apache2 for the server
+- choose to use dbconfig-common
+- enter mysql password
+- enter phpmyadmin password
+
+Enable php5 mcrypt
+
+    sudo php5enmod mcrypt 
+
+Add this line to the apache2 config file `/etc/apache2/apache2.conf`
+
+    Include /etc/phpmyadmin/apache.conf
+
+**Securing phpmyadmin**
+
+Add the the following lien in `/etc/phpmyadmin/apache.conf`.
+    
+    <Directory /usr/share/phpmyadmin>
+        Options FollowSymLinks
+        DirectoryIndex index.php
+    ->  AllowOverride All
+        ...
+
+Create the .htaccess file `/usr/share/phpmyadmin/.htacces`
+
+    AuthType Basic
+    AuthName "Restricted Files"
+    AuthUserFile /etc/apache2/.phpmyadmin.htpasswd
+    Require valid-user
+
+Then set a username and password to access /phpmyadmin
+
+    sudo apt-get install apache2-utils
+    sudo htpasswd -c /etc/apache2/.phpmyadmin.htpasswd admin
+    # enter a password
+
+Restart apache
+
+    sudo service apache2 restart
+
 ## 4. Git Setup
 
 [Tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-automatic-deployment-with-git-with-a-vps)
