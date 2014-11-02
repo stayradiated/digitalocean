@@ -226,9 +226,7 @@ Restart apache
 
 Configure ownership
 
-    sudo chown -R root:www-data assets
-    sudo chown root:www-data .htaccess
-    sudo chown root:www-data mysite/_config.php
+    sudo chown -R admin:www-data *
 
 Configure permissions
 
