@@ -129,7 +129,7 @@ Now test that your ssh settings work
 
 (optional) Check for existing swap partitions
 
-    sudo swapon -s
+    swapon -s
     free -m
 
 (optional) Check available hard drive space
